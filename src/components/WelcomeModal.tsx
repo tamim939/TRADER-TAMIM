@@ -7,8 +7,6 @@ const WELCOME_SEEN_KEY = 'signal-welcome-seen';
 
 export const WelcomeModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!localStorage.getItem(WELCOME_SEEN_KEY)) {
@@ -16,14 +14,9 @@ export const WelcomeModal: React.FC = () => {
     }
   }, []);
 
-  const handleLogin = () => {
-    if (password === '✅') {
-      localStorage.setItem(WELCOME_SEEN_KEY, '1');
-      setIsOpen(false);
-    } else {
-      setError(true);
-      setTimeout(() => setError(false), 2000);
-    }
+  const handleClose = () => {
+    localStorage.setItem(WELCOME_SEEN_KEY, '1');
+    setIsOpen(false);
   };
 
   return (
@@ -44,36 +37,20 @@ export const WelcomeModal: React.FC = () => {
 
               <div className="space-y-4 text-sm text-muted-foreground leading-relaxed text-center">
                 <p>
-                  সরাসরি স্ক্রিনে <span className="font-semibold text-primary">রিয়েল-টাইম সিগন্যাল</span> পেতে নিচের পাসওয়ার্ডটি ব্যবহার করে লগইন করুন।
+                  সরাসরি স্ক্রিনে <span className="font-semibold text-primary">রিয়েল-টাইম সিগন্যাল</span> পেতে নিচের বাটনটি ক্লিক করুন।
                 </p>
                 
                 <div className="rounded-xl bg-primary/5 p-4 border border-primary/10">
-                  <p className="text-xs font-medium mb-2">লগইন পাসওয়ার্ড:</p>
-                  <div className="flex items-center justify-center gap-2">
-                    <code className="bg-muted px-3 py-1 rounded font-bold text-foreground">✅</code>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <input
-                    type="text"
-                    placeholder="পাসওয়ার্ড দিন"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={cn(
-                      "w-full px-4 py-3 rounded-xl border bg-background text-center font-bold focus:outline-none focus:ring-2 focus:ring-primary transition-all",
-                      error ? "border-destructive ring-2 ring-destructive" : "border-border"
-                    )}
-                  />
-                  {error && <p className="text-destructive text-xs animate-shake">ভুল পাসওয়ার্ড! সঠিক পাসওয়ার্ড দিন।</p>}
+                  <p className="font-bold text-foreground">সিস্টেম এখন সচল আছে।</p>
+                  <p className="text-xs mt-1">দ্রুত সিগন্যাল পেতে কাউন্টডাউন টাইমার লক্ষ্য করুন।</p>
                 </div>
               </div>
 
               <button
-                onClick={handleLogin}
+                onClick={handleClose}
                 className="w-full py-4 bg-primary text-primary-foreground font-bold rounded-xl hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
               >
-                লগইন করুন
+                ✅ বুঝেছি
               </button>
             </div>
           </motion.div>
