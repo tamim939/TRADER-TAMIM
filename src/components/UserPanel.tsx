@@ -34,7 +34,7 @@ export const UserPanel: React.FC = () => {
                 : "bg-muted text-muted-foreground hover:bg-muted/80"
             )}
           >
-            22BDWin24
+            BD Win 24
           </button>
           <button
             onClick={() => setCurrentUrl('https://dkwin7.com/')}
@@ -45,7 +45,7 @@ export const UserPanel: React.FC = () => {
                 : "bg-muted text-muted-foreground hover:bg-muted/80"
             )}
           >
-            DKWin7
+            DK Win
           </button>
         </div>
       </div>
