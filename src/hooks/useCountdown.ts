@@ -46,12 +46,9 @@ export const useCountdown = (onPeriodChange?: (newPeriod: string) => void) => {
       const seconds = now.getUTCSeconds();
       const ms = now.getUTCMilliseconds();
       
-      // Based on the screenshot, the app was 3 seconds ahead of the game.
-      // App: 16s, Game: 13s.
-      // To sync, we need to make the app's 'remaining' time smaller.
-      // This means we need to increase 'elapsedInCycle'.
-      // Let's try a more precise offset.
-      const elapsedInCycle = (seconds % 30) * 1000 + ms + 3500; 
+      // Based on the market time (30s cycle), we sync with UTC time.
+      // We use a small offset to account for network latency and match the game clock.
+      const elapsedInCycle = (seconds % 30) * 1000 + ms + 1000; 
       const remaining = Math.max(0, 30 - Math.floor(elapsedInCycle / 1000));
       
       if (remaining === 30 && secondsLeft === 1) {
