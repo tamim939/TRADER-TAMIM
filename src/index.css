@@ -32,10 +32,16 @@
 @layer base {
   * {
     border-color: var(--color-border);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
   }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    touch-action: pan-x pan-y;
   }
 }
 
